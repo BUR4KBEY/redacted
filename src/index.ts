@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 export const DEFAULT_REDACTED_MESSAGE =
   process.env.REDACTED_MESSAGE ?? '<redacted>';
 
