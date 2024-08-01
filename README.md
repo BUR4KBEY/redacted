@@ -47,8 +47,6 @@ You can customize the default redacted message (`<redacted>`) to any string you 
 For example, if you set `REDACTED_MESSAGE="[REDACTED]"` and run the code, the output will reflect this change.
 
 ```ts
-// example.ts
-
 import { Redacted } from '@burakbey/redacted';
 
 const password = Redacted.wrap('super-secret-password');
