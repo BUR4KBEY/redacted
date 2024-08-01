@@ -36,7 +36,9 @@ console.log(Redacted.unwrap(password)); // super-secret-password
 
 ## 🔄 Change the Redacted Message
 
-You can customize the default redacted message (`<redacted>`) to any string you prefer. To do this, set the environment variable `REDACTED_MESSAGE` to your desired value. For example, if you set `REDACTED_MESSAGE="[REDACTED]"` and run the code, the output will reflect this change.
+You can customize the default redacted message (`<redacted>`) to any string you prefer. To do this, set the environment variable `REDACTED_MESSAGE` to your desired value.
+
+For example, if you set `REDACTED_MESSAGE="[REDACTED]"` and run the code, the output will reflect this change.
 
 ```ts
 // example.ts
