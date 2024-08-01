@@ -1,6 +1,6 @@
 {
   "name": "@burakbey/redacted",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A library that protects sensitive data in your code by redacting values and preventing unintentional exposure.",
   "author": "BurakBey",
   "license": "MIT",
