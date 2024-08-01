@@ -1,3 +1,9 @@
+[![NPM Version](https://img.shields.io/npm/v/%40burakbey%2Fredacted?style=for-the-badge&logo=npm&color=blue&cacheSeconds=3600)](https://npmjs.com/package/@burakbey/redacted)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/bur4kbey/redacted/test.yml?style=for-the-badge&label=tests&cacheSeconds=3600)](https://github.com/BUR4KBEY/redacted/actions/workflows/test.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/bur4kbey/redacted?style=for-the-badge&cacheSeconds=3600)](https://app.codecov.io/gh/BUR4KBEY/redacted)
+[![GitHub License](https://img.shields.io/github/license/bur4kbey/redacted?style=for-the-badge)](https://github.com/BUR4KBEY/redacted/blob/main/LICENSE)
+[![GitHub Repo stars](https://img.shields.io/github/stars/bur4kbey/redacted?style=for-the-badge&label=%E2%AD%90%20STARS&color=yellow&cacheSeconds=3600)](https://github.com/BUR4KBEY/redacted)
+
 # 🔐 [@burakbey/redacted](https://npmjs.com/package/@burakbey/redacted)
 
 This is a library designed to safeguard sensitive data in your code. It provides a `Redacted` class that uses various techniques to prevent unintentional exposure of sensitive information. Even if an attempt is made to expose the data, it will appear as `<redacted>`.
@@ -48,6 +54,10 @@ import { Redacted } from '@burakbey/redacted';
 const password = Redacted.wrap('super-secret-password');
 console.log(password); // [REDACTED]
 ```
+
+## 🧪 Code Coverage and Tests
+
+Tests are crucial for ensuring that the library functions as expected. You can review the code coverage reports by visiting [**Codecov**](https://app.codecov.io/gh/BUR4KBEY/redacted). The primary objective is to achieve complete coverage of the entire codebase through rigorous testing.
 
 ## ☕ Support
 
