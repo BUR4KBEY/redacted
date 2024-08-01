@@ -1,5 +1,5 @@
 [![NPM Version](https://img.shields.io/npm/v/%40burakbey%2Fredacted?style=for-the-badge&logo=npm&color=blue&cacheSeconds=3600)](https://npmjs.com/package/@burakbey/redacted)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/bur4kbey/redacted/test.yml?style=for-the-badge&label=tests&cacheSeconds=3600)](https://github.com/BUR4KBEY/redacted/actions/workflows/test.yml)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/bur4kbey/redacted/test.yaml?style=for-the-badge&label=tests&cacheSeconds=3600)](https://github.com/BUR4KBEY/redacted/actions/workflows/test.yaml)
 [![Codecov](https://img.shields.io/codecov/c/github/bur4kbey/redacted?style=for-the-badge&cacheSeconds=3600)](https://app.codecov.io/gh/BUR4KBEY/redacted)
 [![GitHub License](https://img.shields.io/github/license/bur4kbey/redacted?style=for-the-badge)](https://github.com/BUR4KBEY/redacted/blob/main/LICENSE)
 [![GitHub Repo stars](https://img.shields.io/github/stars/bur4kbey/redacted?style=for-the-badge&label=%E2%AD%90%20STARS&color=yellow&cacheSeconds=3600)](https://github.com/BUR4KBEY/redacted)
