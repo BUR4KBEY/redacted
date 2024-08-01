@@ -1,4 +1,4 @@
-# 🔐 @burakbey/redacted
+# 🔐 [@burakbey/redacted](https://npmjs.com/package/@burakbey/redacted)
 
 This is a library designed to safeguard sensitive data in your code. It provides a `Redacted` class that uses various techniques to prevent unintentional exposure of sensitive information. Even if an attempt is made to expose the data, it will appear as `<redacted>`.
 
