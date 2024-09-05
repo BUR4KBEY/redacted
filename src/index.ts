@@ -1,16 +1,16 @@
 export const DEFAULT_REDACTED_MESSAGE =
   process.env.REDACTED_MESSAGE ?? '<redacted>';
 
-export class Redacted<T = string> {
+export class Redacted<T = unknown> {
   private constructor(private readonly value: T) {
     Object.freeze(this);
   }
 
-  static wrap<K extends string>(value: K): Redacted<K> {
+  static wrap<K = unknown>(value: K): Redacted<K> {
     return new Redacted(value);
   }
 
-  static unwrap<K extends string>(redacted: Redacted<K>): K {
+  static unwrap<K = unknown>(redacted: Redacted<K>): K {
     return redacted.value;
   }
 
