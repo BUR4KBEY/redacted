@@ -14,6 +14,12 @@ export class Redacted<T = unknown> {
     return redacted.value;
   }
 
+  transform<K = T>(fn: (val: T) => K): Redacted<K> {
+    const result = fn(Redacted.unwrap(this));
+
+    return new Redacted<K>(result);
+  }
+
   toString(): string {
     return DEFAULT_REDACTED_MESSAGE;
   }

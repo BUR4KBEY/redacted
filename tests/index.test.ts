@@ -120,4 +120,47 @@ describe('Redacted', () => {
     expect(Redacted.unwrap(redacted)).toStrictEqual('test');
     expect(Redacted.unwrap(redacted)).not.toStrictEqual('changed');
   });
+
+  it('should allow transformation of redacted values while preserving redaction', async () => {
+    const { Redacted } = await import('../src');
+    const { createHash } = await import('node:crypto');
+
+    const value = 'test';
+    const getSHA256Hash = (str: string) =>
+      createHash('sha256').update(str).digest('hex');
+
+    const redacted = Redacted.wrap(value);
+    const transformed = redacted.transform(x => getSHA256Hash(x));
+
+    expect(redacted).toBeInstanceOf(Redacted);
+    expect(transformed).toBeInstanceOf(Redacted);
+
+    expect(Redacted.unwrap(redacted)).toStrictEqual(value);
+    expect(Redacted.unwrap(transformed)).toStrictEqual(getSHA256Hash(value));
+  });
+
+  it('should transform redacted values to different types while preserving redaction', async () => {
+    const { Redacted } = await import('../src');
+
+    const val1 = '123';
+    const val2 = '{"hello":"world"}';
+
+    const r1 = Redacted.wrap(val1);
+    const r2 = Redacted.wrap(val2);
+
+    const t1 = r1.transform(x => Number(x));
+    const t2 = r2.transform<{ hello: string }>(x => JSON.parse(x));
+
+    expect(r1).toBeInstanceOf(Redacted);
+    expect(r2).toBeInstanceOf(Redacted);
+    expect(t1).toBeInstanceOf(Redacted);
+    expect(t2).toBeInstanceOf(Redacted);
+
+    expect(Redacted.unwrap(r1)).toStrictEqual(val1);
+    expect(Redacted.unwrap(r2)).toStrictEqual(val2);
+
+    expect(Redacted.unwrap(t1)).toStrictEqual(Number(val1));
+    expect(Redacted.unwrap(t2)).toStrictEqual(JSON.parse(val2));
+    expect(Redacted.unwrap(t2).hello).toStrictEqual('world');
+  });
 });
