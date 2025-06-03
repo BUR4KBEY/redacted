@@ -103,9 +103,9 @@ describe('Redacted', () => {
 
     process.env.REDACTED_MESSAGE = msg;
 
-    const { DEFAULT_REDACTED_MESSAGE } = await import('../src');
+    const { REDACTED_MESSAGE } = await import('../src');
 
-    expect(DEFAULT_REDACTED_MESSAGE).toStrictEqual(msg);
+    expect(REDACTED_MESSAGE).toStrictEqual(msg);
   });
 
   it('should prevent modification of redacted instance value', async () => {

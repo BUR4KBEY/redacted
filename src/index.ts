@@ -1,5 +1,6 @@
-export const DEFAULT_REDACTED_MESSAGE =
-  process.env.REDACTED_MESSAGE ?? '<redacted>';
+export const DEFAULT_REDACTED_MESSAGE = '<redacted>';
+export const REDACTED_MESSAGE =
+  process.env.REDACTED_MESSAGE ?? DEFAULT_REDACTED_MESSAGE;
 
 export class Redacted<T = unknown> {
   private constructor(private readonly value: T) {
@@ -31,18 +32,18 @@ export class Redacted<T = unknown> {
   }
 
   toString(): string {
-    return DEFAULT_REDACTED_MESSAGE;
+    return REDACTED_MESSAGE;
   }
 
   toJSON(): string {
-    return DEFAULT_REDACTED_MESSAGE;
+    return REDACTED_MESSAGE;
   }
 
   inspect(): string {
-    return DEFAULT_REDACTED_MESSAGE;
+    return REDACTED_MESSAGE;
   }
 
   [Symbol.for('nodejs.util.inspect.custom')](): string {
-    return DEFAULT_REDACTED_MESSAGE;
+    return REDACTED_MESSAGE;
   }
 }
