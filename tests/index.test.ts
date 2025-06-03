@@ -151,7 +151,7 @@ describe('Redacted', () => {
     const r2 = Redacted.wrap(val2);
 
     const t1 = r1.transform(x => Number(x));
-    const t2 = r2.transform<{ hello: string }>(x => JSON.parse(x));
+    const t2 = r2.transform(x => JSON.parse(x) as { hello: string });
 
     expect(r1).toBeInstanceOf(Redacted);
     expect(r2).toBeInstanceOf(Redacted);
