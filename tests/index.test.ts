@@ -58,14 +58,16 @@ describe('Redacted', () => {
         `"${DEFAULT_REDACTED_MESSAGE}"`
       );
 
-      const customInspect: () => void =
+      const customInspect =
         example[
           Symbol.for(
             'nodejs.util.inspect.custom'
           ) as unknown as keyof RedactedType
         ];
 
-      expect(customInspect()).toStrictEqual(DEFAULT_REDACTED_MESSAGE);
+      expect((customInspect as () => string)()).toStrictEqual(
+        DEFAULT_REDACTED_MESSAGE
+      );
     }
 
     const items = await createChildProcessToTestStdout('WRAPPED');
