@@ -14,10 +14,20 @@ export class Redacted<T = unknown> {
     return redacted.value;
   }
 
-  transform<K = T>(fn: (val: T) => K): Redacted<K> {
+  transform<K>(fn: (val: T) => Promise<K>): Promise<Redacted<K>>;
+
+  transform<K>(fn: (val: T) => K): Redacted<K>;
+
+  transform<K>(
+    fn: (val: T) => K | Promise<K>
+  ): Redacted<K> | Promise<Redacted<K>> {
     const result = fn(Redacted.unwrap(this));
 
-    return new Redacted<K>(result);
+    if (result instanceof Promise) {
+      return result.then(res => new Redacted(res));
+    }
+
+    return new Redacted(result);
   }
 
   toString(): string {

@@ -165,4 +165,57 @@ describe('Redacted', () => {
     expect(Redacted.unwrap(t2)).toStrictEqual(JSON.parse(val2));
     expect(Redacted.unwrap(t2).hello).toStrictEqual('world');
   });
+
+  it('should allow async transformation of redacted values', async () => {
+    const { Redacted } = await import('../src');
+
+    const value = 'hello';
+    const asyncUppercase = async (s: string): Promise<string> => {
+      await new Promise(resolve => {
+        setTimeout(resolve, 10);
+      });
+      return s.toUpperCase();
+    };
+
+    const redacted = Redacted.wrap(value);
+    const transformed = await redacted.transform(asyncUppercase);
+
+    expect(redacted).toBeInstanceOf(Redacted);
+    expect(transformed).toBeInstanceOf(Redacted);
+
+    expect(Redacted.unwrap(transformed)).toStrictEqual('HELLO');
+  });
+
+  it('should support async transform to different type', async () => {
+    const { Redacted } = await import('../src');
+
+    const value = 'true';
+    const asyncParseBoolean = async (str: string): Promise<boolean> => {
+      await new Promise(resolve => {
+        setTimeout(resolve, 10);
+      });
+      return str === 'true';
+    };
+
+    const redacted = Redacted.wrap(value);
+    const transformed = await redacted.transform(asyncParseBoolean);
+
+    expect(transformed).toBeInstanceOf(Redacted);
+    expect(Redacted.unwrap(transformed)).toBe(true);
+  });
+
+  it('should correctly handle mixed sync and async transform usage', async () => {
+    const { Redacted } = await import('../src');
+
+    const redacted = Redacted.wrap('42');
+
+    const syncTransformed = redacted.transform(s => Number(s));
+    const asyncTransformed = await redacted.transform(async s => Number(s));
+
+    expect(syncTransformed).toBeInstanceOf(Redacted);
+    expect(asyncTransformed).toBeInstanceOf(Redacted);
+
+    expect(Redacted.unwrap(syncTransformed)).toBe(42);
+    expect(Redacted.unwrap(asyncTransformed)).toBe(42);
+  });
 });
